@@ -1,0 +1,23 @@
+version: '2'
+services:
+  fluentd-client:
+    build: ./fluentd-client
+    volumes:
+      - ./fluentd-client/conf:/fluentd/etc    # fluentd.conf 파일을 컨테이너로 마운트  
+      - /home/ubuntu/logging/board:/var/log  # 쌓인 서비스의 로그파일을 컨테이너로 마운트
+    links:
+      - "fluentd-aggregator"
+    ports:
+      - "25000:25000"
+
+  fluentd-aggregator:
+    build: ./fluentd-aggregator
+    volumes:
+      - ./fluentd-aggregator/conf:/fluentd/etc # 로컬의 fluentd.conf 파일을 컨테이너로 마운트
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
+
+networks:
+  internal:
+    driver: bridge
