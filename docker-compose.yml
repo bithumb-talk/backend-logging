@@ -4,7 +4,7 @@ services:
     build: ./fluentd-client
     volumes:
       - ./fluentd-client/conf:/fluentd/etc    # fluentd.conf 파일을 컨테이너로 마운트  
-      - /home/ubuntu/log:/var/log  # 쌓인 서비스의 로그파일을 컨테이너로 마운트
+      - /home/ubuntu/logging/board:/var/log  # 쌓인 서비스의 로그파일을 컨테이너로 마운트
     links:
       - "fluentd-aggregator"
     ports:
