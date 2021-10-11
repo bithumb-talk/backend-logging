@@ -20,24 +20,24 @@ services:
   #   ports:
   #     - "25001:25000"
 
-  fluentd-client-interest:
+  # fluentd-client-interest:
+  #   build: ./fluentd-client
+  #   volumes:
+  #     - ./fluentd-client/conf-interest:/fluentd/etc    
+  #     - /home/ubuntu/logging/interest:/var/log  
+  #   links:
+  #     - "fluentd-aggregator"
+  #   ports:
+  #     - "25000:25000"
+
+  fluentd-client-consumer:
     build: ./fluentd-client
     volumes:
-      - ./fluentd-client/conf-interest:/fluentd/etc    
-      - /home/ubuntu/logging/interest:/var/log  
-    links:
+      - ./fluentd-client/conf-consumer:/fluentd/etc
+      - /home/ubuntu/logging/consumer:/var/log
       - "fluentd-aggregator"
     ports:
       - "25000:25000"
-
-  # fluentd-client-consumer:
-  #   build: ./fluentd-client
-  #   volumes:
-  #     - ./fluentd-client/conf-consumer:/fluentd/etc
-  #     - /home/ubuntu/logging/consumer:/var/log
-  #     - "fluentd-aggregator"
-  #   ports:
-  #     - "25003:25000"
 
   fluentd-aggregator:
     build: ./fluentd-aggregator
