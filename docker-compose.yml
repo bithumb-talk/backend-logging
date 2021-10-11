@@ -35,6 +35,7 @@ services:
     volumes:
       - ./fluentd-client/conf-consumer:/fluentd/etc
       - /home/ubuntu/logging/consumer:/var/log
+    links:
       - "fluentd-aggregator"
     ports:
       - "25000:25000"
