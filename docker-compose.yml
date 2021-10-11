@@ -33,7 +33,7 @@ services:
   fluentd-client-consumer:
     build: ./fluentd-client
     volumes:
-      - ./fluentd-client/conf-consumer:/fluentd/etc
+      - ./fluentd-client/conf:/fluentd/etc
       - /home/ubuntu/logging/consumer:/var/log
     links:
       - "fluentd-aggregator"
