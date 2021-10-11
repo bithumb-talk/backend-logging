@@ -28,7 +28,7 @@ services:
     links:
       - "fluentd-aggregator"
     ports:
-      - "25002:25000"
+      - "25000:25000"
 
   # fluentd-client-consumer:
   #   build: ./fluentd-client
