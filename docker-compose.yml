@@ -43,8 +43,8 @@ services:
     build: ./fluentd-aggregator
     volumes:
       - ./fluentd-aggregator/conf:/fluentd/etc # 로컬의 fluentd.conf 파일을 컨테이너로 마운트
-    links:
-      - "elasticsearch"
+    # links:
+    #   - "elasticsearch"
     ports:
       - "24224:24224"
       - "24224:24224/udp"
