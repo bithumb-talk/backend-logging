@@ -23,7 +23,7 @@ services:
   fluentd-client-interest:
     build: ./fluentd-client
     volumes:
-      - ./fluentd-client/conf-interest:/fluentd/etc    
+      - ./fluentd-client/conf:/fluentd/etc    
       - /home/ubuntu/logging/interest:/var/log  
     links:
       - "fluentd-aggregator"
