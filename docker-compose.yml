@@ -1,24 +1,24 @@
 version: '2'
 services:
-   #fluentd-client-board:
-    # build: ./fluentd-client
-    # volumes:
-    #   - ./fluentd-client/conf-board:/fluentd/etc    # fluentd.conf 파일을 컨테이너로 마운트  
-    #   - /home/ubuntu/logging/board:/var/log # 쌓인 서비스의 로그파일을 컨테이너로 마운트
-    # links:
-    #   - "fluentd-aggregator"
-    # ports:
-    #   - "25001:25000"
-  
-  fluentd-client-user:
+  fluentd-client-board:
     build: ./fluentd-client
     volumes:
-      - ./fluentd-client/conf-user:/fluentd/etc 
-      - /home/ubuntu/logging/user:/var/log 
+      - ./fluentd-client/conf-board:/fluentd/etc    # fluentd.conf 파일을 컨테이너로 마운트  
+      - /home/ubuntu/logging/board:/var/log # 쌓인 서비스의 로그파일을 컨테이너로 마운트
     links:
       - "fluentd-aggregator"
     ports:
       - "25001:25000"
+  
+  # fluentd-client-user:
+  #   build: ./fluentd-client
+  #   volumes:
+  #     - ./fluentd-client/conf-user:/fluentd/etc 
+  #     - /home/ubuntu/logging/user:/var/log 
+  #   links:
+  #     - "fluentd-aggregator"
+  #   ports:
+  #     - "25001:25000"
 
   # fluentd-client-interest:
   #   build: ./fluentd-client
@@ -30,15 +30,15 @@ services:
   #   ports:
   #     - "25000:25000"
 
-  # fluentd-client-consumer:
-  #   build: ./fluentd-client
-  #   volumes:
-  #     - ./fluentd-client/conf-consumer:/fluentd/etc
-  #     - /home/ubuntu/logging/consumer:/var/log
-  #   links:
-  #     - "fluentd-aggregator"
-  #   ports:
-  #     - "25000:25000"
+  fluentd-client-consumer:
+    build: ./fluentd-client
+    volumes:
+      - ./fluentd-client/conf-consumer:/fluentd/etc
+      - /home/ubuntu/logging/consumer:/var/log
+    links:
+      - "fluentd-aggregator"
+    ports:
+      - "25000:25000"
 
   fluentd-aggregator:
     build: ./fluentd-aggregator
